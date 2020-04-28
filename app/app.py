@@ -11,10 +11,6 @@ login_manager.login_view = 'users.login'
 login_manager.login_message_category = 'info'
 db = SQLAlchemy()
 
-from posts.routes import posts
-from users.routes import users
-from main.routes import main
-
 
 
 def create_app(config_class=Config):
@@ -24,6 +20,11 @@ def create_app(config_class=Config):
     db.init_app(app)
     login_manager.init_app(app)
     db.init_app(app)
+
+    from posts.routes import posts
+    from users.routes import users
+    from main.routes import main
+
     app.register_blueprint(users)
     app.register_blueprint(posts)
     app.register_blueprint(main)
