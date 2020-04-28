@@ -21,10 +21,6 @@ def create_app(config_class=Config):
     login_manager.init_app(app)
     db.init_app(app)
 
-    from models.models import User, Post
-    with app.app_context():
-        db.create_all()
-        db.session.commit()
 
     from posts.routes import posts
     from users.routes import users
